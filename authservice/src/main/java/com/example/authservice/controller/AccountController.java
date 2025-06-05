@@ -18,8 +18,6 @@ import org.springframework.security.authentication.*;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
-import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -37,6 +35,8 @@ public class AccountController extends GenericController<Account, Integer> {
 
     @Autowired
     private JwtService jwtService; // Dịch vụ tạo và xử lý JWT token
+    @Autowired
+    private UserClient userClient;
 
     public AccountController(AccountService accountService) {
         this.accountService = accountService;
@@ -118,8 +118,6 @@ public class AccountController extends GenericController<Account, Integer> {
                     .body(new ExceptionResponse("An error occurred: " + e.getMessage()));
         }
     }
-    @Autowired
-    private UserClient userClient;
 
     @PutMapping("/update-profile")
     public String updateProfile(@AuthenticationPrincipal Account account,
@@ -133,6 +131,7 @@ public class AccountController extends GenericController<Account, Integer> {
 
         return "User profile updated successfully.";
     }
+
     @PostMapping("/create-user")
     public String createUserFromLoggedInAccount(@AuthenticationPrincipal Account account,
                                                 @RequestBody UserRequest request) {

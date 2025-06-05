@@ -19,6 +19,10 @@ public class UserController {
     @Autowired
     private UserRepository userRepository;
 
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
+
     @PostMapping
     public void createUser(@RequestBody UserRequest request) {
         User user = new User();
@@ -26,6 +30,7 @@ public class UserController {
         user.setFullName(request.getFullName());
         userRepository.save(user);
     }
+
     @PutMapping("/update")
     public User updateUserByAccountId(@RequestBody UserRequest userRequest) {
         return userRepository.findByAccountId(userRequest.getAccountId())
@@ -35,11 +40,6 @@ public class UserController {
                 })
                 .orElseThrow(() -> new RuntimeException("User not found for accountId: " + userRequest.getAccountId()));
     }
-    public UserController(UserService userService) {
-        this.userService = userService;
-    }
-
-
 
     @GetMapping
     public ResponseEntity<List<User>> getAllUsers() {

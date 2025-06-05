@@ -5,7 +5,6 @@ import com.example.authservice.entity.Account;
 import com.example.authservice.generic.IRepository;
 import org.springframework.stereotype.Repository;
 
-
 import java.util.Optional;
 
 @Repository

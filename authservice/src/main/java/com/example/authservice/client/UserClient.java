@@ -12,6 +12,7 @@ public interface UserClient {
 
     @PutMapping("/api/users/update")
     void updateUser(@RequestBody UserRequest userRequest);
+
     @PostMapping("/api/users")
     void createUser(@RequestBody UserRequest userRequest);
 }

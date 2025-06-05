@@ -1,7 +1,6 @@
 package com.example.userservice.generic;
 
 
-
 import com.example.userservice.dto.RequestResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

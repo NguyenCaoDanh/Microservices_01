@@ -35,7 +35,7 @@ public class SecurityConfiguration {
 
     public SecurityConfiguration(@Lazy JwtFilter jwtFilter,
                                  @Lazy AccountService accountService
-                            ) {
+    ) {
         this.jwtFilter = jwtFilter;
         this.accountService = accountService;
 
